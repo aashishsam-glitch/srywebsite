@@ -1,0 +1,110 @@
+import { ExperienceContent } from '@/types';
+
+export const defaultExperienceContent: ExperienceContent = {
+  recipient: {
+    name: "Wynne",
+    greeting: "Hey, Wynne.",
+    subGreeting: "I made a little something for you.",
+  },
+  eventDate: {
+    display: "October 18",
+    description: "The moment I want to acknowledge",
+    themeQuote: "Some moments deserve more of our attention than we give them. I'm sorry I didn't give ours enough.",
+  },
+  constellationThoughts: [
+    {
+      id: 1,
+      label: "Reflection I",
+      statement: "I keep thinking about how I could have been more present.",
+      position: [-1.8, 0.9, 0],
+      color: "#F3A5C7",
+    },
+    {
+      id: 2,
+      label: "Reflection II",
+      statement: "You deserved more of my attention than I gave you.",
+      position: [1.8, 0.9, 0],
+      color: "#B7A5F7",
+    },
+    {
+      id: 3,
+      label: "Reflection III",
+      statement: "I wish I had been more thoughtful in that moment.",
+      position: [-1.3, -1.2, 0],
+      color: "#E8CDA9",
+    },
+    {
+      id: 4,
+      label: "Reflection IV",
+      statement: "I can't go back and change that day, but I can be honest about it.",
+      position: [1.3, -1.2, 0],
+      color: "#FFF3E8",
+    },
+  ],
+  letter: {
+    greeting: "Wynne,",
+    paragraphs: [
+      "I've been thinking about October 18, and there's something I want to say properly.",
+      "I'm sorry.",
+      "I should have paid more attention to you when we went out. I should have been more present and more thoughtful with the time we had together. Looking back, I wish I had given you more of the attention you deserved.",
+      "I'm not saying this to make excuses, and I'm not expecting you to brush it aside just because I'm apologizing. I simply wanted to acknowledge that I could have done better.",
+      "You matter to me, and I don't want that to be something I only show through words. I want to be more mindful, to listen better, and to give the people I care about the attention they deserve.",
+      "I can't change how that day went. But I can learn from it, and I can do better going forward.",
+      "I'm genuinely sorry, Wynne. ♡",
+    ],
+    closing: "With genuine care,",
+    signature: "Always wishing you the very best.",
+  },
+  unsaidPetals: [
+    {
+      id: "listening",
+      theme: "Listening",
+      quote: "Being there isn't just about showing up. It's about being present.",
+      reflection: "To truly listen is to quiet one's own mind and give the other person your full, undivided attention.",
+      color: "#F3A5C7",
+      initialAngle: 0,
+    },
+    {
+      id: "being-present",
+      theme: "Being Present",
+      quote: "Sometimes the little things deserve the most attention.",
+      reflection: "A shared conversation is only as deep as how attentive we are to the moment we are in.",
+      color: "#B7A5F7",
+      initialAngle: (2 * Math.PI) / 5,
+    },
+    {
+      id: "noticing",
+      theme: "Noticing",
+      quote: "Paying attention is one of the quietest yet truest ways to show respect.",
+      reflection: "Noticing how someone feels, their expressions, and their words without distraction.",
+      color: "#E8CDA9",
+      initialAngle: (4 * Math.PI) / 5,
+    },
+    {
+      id: "making-time-count",
+      theme: "Making Time Count",
+      quote: "Time spent with someone should feel cherished, never rushed or divided.",
+      reflection: "Every shared hour is a gift that deserves to be honored with thoughtfulness.",
+      color: "#FFF3E8",
+      initialAngle: (6 * Math.PI) / 5,
+    },
+    {
+      id: "care-in-actions",
+      theme: "Care In Action",
+      quote: "Care should be something people can feel, not just something we say.",
+      reflection: "Words can apologize, but consistent mindful actions are how respect is really shown.",
+      color: "#D78DAC",
+      initialAngle: (8 * Math.PI) / 5,
+    },
+  ],
+  finale: {
+    closingThoughts: [
+      "That's all I wanted you to know, Wynne.",
+      "I'm sorry I didn't give you the attention I should have that day.",
+      "No pressure to say anything or respond in a particular way. I just wanted you to know that I've thought about it, that I care, and that I'm sorry. ♡",
+    ],
+    actionButtonText: "Let the little stars drift",
+    postDriftMessage: "For Wynne, with sincerity. ♡",
+    postDriftSubtext: "Thank you for taking the time to read this little universe.",
+  },
+};
