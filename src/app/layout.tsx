@@ -23,9 +23,6 @@ export const metadata: Metadata = {
     description: 'An interactive apology experience built with sincerity, care, and intention.',
     type: 'website',
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
 };
 
 export const viewport: Viewport = {
