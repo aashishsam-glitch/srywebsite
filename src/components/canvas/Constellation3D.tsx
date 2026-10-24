@@ -10,6 +10,7 @@ import { getCoronaTexture, getDiffractionSpikeTexture } from './StarTextures';
 interface Constellation3DProps {
   nodes: ConstellationNode[];
   discoveredNodeIds: number[];
+  selectedNodeId: number | null;
   onSelectNode: (node: ConstellationNode) => void;
   allDiscovered: boolean;
   visible: boolean;
@@ -19,10 +20,12 @@ interface Constellation3DProps {
 function RealisticStarNode({
   node,
   isDiscovered,
+  isSelected,
   onClick,
 }: {
   node: ConstellationNode;
   isDiscovered: boolean;
+  isSelected: boolean;
   onClick: () => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -40,8 +43,9 @@ function RealisticStarNode({
 
     // Natural stellar scintillation (twinkling)
     const twinkle = Math.sin(t * 3.5 + node.id * 1.7) * 0.15 + Math.cos(t * 2.1 + node.id) * 0.1;
-    const baseScale = isDiscovered ? 1.0 : 0.65;
-    const currentScale = baseScale + twinkle * (isDiscovered ? 0.08 : 0.05);
+    const isLit = isDiscovered || isSelected;
+    const baseScale = isSelected ? 1.25 : isLit ? 1.0 : 0.65;
+    const currentScale = baseScale + twinkle * (isLit ? 0.08 : 0.04);
 
     if (coreRef.current) {
       coreRef.current.scale.setScalar(currentScale);
@@ -49,56 +53,63 @@ function RealisticStarNode({
 
     // Atmospheric Corona Glow breathing
     if (coronaRef.current) {
-      const targetOpacity = isDiscovered ? 0.95 + twinkle * 0.15 : 0.35 + twinkle * 0.1;
+      const targetOpacity = isSelected ? 1.0 : isLit ? 0.88 + twinkle * 0.1 : 0.35 + twinkle * 0.08;
       const mat = coronaRef.current.material as THREE.SpriteMaterial;
-      mat.opacity = THREE.MathUtils.lerp(mat.opacity, targetOpacity, delta * 4);
-      coronaRef.current.scale.setScalar((isDiscovered ? 1.6 : 0.8) + twinkle * 0.1);
+      mat.opacity = THREE.MathUtils.lerp(mat.opacity, targetOpacity, delta * 5);
+      coronaRef.current.scale.setScalar((isSelected ? 2.0 : isLit ? 1.5 : 0.8) + twinkle * 0.1);
     }
 
     // 4-Point Diffraction Cross Spikes (flare visible when lit up)
     if (spikesRef.current) {
-      const targetOpacity = isDiscovered ? 0.9 + twinkle * 0.15 : 0;
+      const targetOpacity = isSelected ? 1.0 : isLit ? 0.82 + twinkle * 0.15 : 0;
       const mat = spikesRef.current.material as THREE.SpriteMaterial;
-      mat.opacity = THREE.MathUtils.lerp(mat.opacity, targetOpacity, delta * 3);
-      // Gentle cinematic rotation of the star flare
-      mat.rotation += delta * 0.04;
-      spikesRef.current.scale.setScalar(isDiscovered ? 2.4 + twinkle * 0.2 : 0.1);
+      mat.opacity = THREE.MathUtils.lerp(mat.opacity, targetOpacity, delta * 4);
+      mat.rotation += delta * 0.05;
+      spikesRef.current.scale.setScalar((isSelected ? 2.8 : isLit ? 2.2 : 0.1) + twinkle * 0.2);
     }
 
     if (lightRef.current) {
-      const targetIntensity = isDiscovered ? 2.0 + twinkle * 0.3 : 0.3;
-      lightRef.current.intensity = THREE.MathUtils.lerp(lightRef.current.intensity, targetIntensity, delta * 3);
+      const targetIntensity = isSelected ? 2.6 + twinkle * 0.4 : isLit ? 1.8 + twinkle * 0.25 : 0.3;
+      lightRef.current.intensity = THREE.MathUtils.lerp(lightRef.current.intensity, targetIntensity, delta * 4);
     }
   });
 
   return (
-    <group ref={groupRef} position={node.position} onClick={onClick}>
+    <group
+      ref={groupRef}
+      position={node.position}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      onPointerDown={(e) => {
+        e.stopPropagation();
+      }}
+    >
       {/* Invisible enlarged hit target for effortless clicking/tapping */}
       <mesh>
-        <sphereGeometry args={[0.45, 12, 12]} />
+        <sphereGeometry args={[0.55, 16, 16]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
-      {/* 1. Hot Stellar Photosphere Core (White-hot radiant center) */}
+      {/* 1. Hot Stellar Photosphere Core */}
       <mesh ref={coreRef}>
-        <sphereGeometry args={[0.075, 24, 24]} />
-        <meshBasicMaterial
-          color="#FFFFFF"
-        />
+        <sphereGeometry args={[0.085, 24, 24]} />
+        <meshBasicMaterial color="#FFFFFF" />
       </mesh>
 
       {/* 2. Chromosphere Inner Colored Tint */}
       <mesh>
-        <sphereGeometry args={[0.11, 20, 20]} />
+        <sphereGeometry args={[0.13, 20, 20]} />
         <meshBasicMaterial
           color={node.color}
           transparent
-          opacity={isDiscovered ? 0.8 : 0.45}
+          opacity={isDiscovered || isSelected ? 0.85 : 0.4}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* 3. Soft Atmospheric Corona Glow (Feathered Sprite) */}
+      {/* 3. Soft Atmospheric Corona Glow */}
       <sprite ref={coronaRef}>
         <spriteMaterial
           map={coronaTexture}
@@ -126,8 +137,8 @@ function RealisticStarNode({
       <pointLight
         ref={lightRef}
         color={node.color}
-        intensity={0.3}
-        distance={3.8}
+        intensity={0.4}
+        distance={4.2}
         decay={2}
       />
     </group>
@@ -137,6 +148,7 @@ function RealisticStarNode({
 export const Constellation3D: React.FC<Constellation3DProps> = ({
   nodes,
   discoveredNodeIds,
+  selectedNodeId,
   onSelectNode,
   allDiscovered,
   visible,
@@ -233,11 +245,13 @@ export const Constellation3D: React.FC<Constellation3DProps> = ({
       {/* Individual Realistic Star Nodes */}
       {nodes.map((node) => {
         const isDiscovered = discoveredNodeIds.includes(node.id);
+        const isSelected = selectedNodeId === node.id;
         return (
           <RealisticStarNode
             key={node.id}
             node={node}
             isDiscovered={isDiscovered}
+            isSelected={isSelected}
             onClick={() => {
               soundEngine.playChime(440 + node.id * 80);
               onSelectNode(node);

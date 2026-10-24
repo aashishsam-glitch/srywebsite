@@ -11,6 +11,7 @@ interface October18SceneProps {
   themeQuote: string;
   nodes: ConstellationNode[];
   discoveredNodeIds: number[];
+  activeNode: ConstellationNode | null;
   onSelectNode: (node: ConstellationNode) => void;
   allDiscovered: boolean;
   onContinue: () => void;
@@ -21,14 +22,12 @@ export const October18Scene: React.FC<October18SceneProps> = ({
   themeQuote,
   nodes,
   discoveredNodeIds,
+  activeNode,
   onSelectNode,
   allDiscovered,
   onContinue,
 }) => {
-  const [activeNode, setActiveNode] = useState<ConstellationNode | null>(null);
-
   const handleNodeClick = (node: ConstellationNode) => {
-    setActiveNode(node);
     onSelectNode(node);
     soundEngine.playChime(440 + node.id * 75);
   };

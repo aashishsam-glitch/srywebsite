@@ -33,6 +33,7 @@ export default function ExperiencePage() {
 
   // Constellation state
   const [discoveredConstellationIds, setDiscoveredConstellationIds] = useState<number[]>([1]);
+  const [activeConstellationNode, setActiveConstellationNode] = useState<ConstellationNode | null>(defaultExperienceContent.constellationThoughts[0]);
   const allConstellationsDiscovered = discoveredConstellationIds.length >= content.constellationThoughts.length;
 
   // Petals state
@@ -77,6 +78,7 @@ export default function ExperiencePage() {
   };
 
   const handleSelectConstellationNode = (node: ConstellationNode) => {
+    setActiveConstellationNode(node);
     if (!discoveredConstellationIds.includes(node.id)) {
       setDiscoveredConstellationIds((prev) => [...prev, node.id]);
     }
@@ -85,6 +87,7 @@ export default function ExperiencePage() {
   const handleReplay = () => {
     setIsDrifting(false);
     setSelectedPetal(null);
+    setActiveConstellationNode(content.constellationThoughts[0]);
     setCurrentScene(0);
   };
 
@@ -102,6 +105,7 @@ export default function ExperiencePage() {
         reducedMotion={reducedMotion}
         constellationNodes={content.constellationThoughts}
         discoveredConstellationIds={discoveredConstellationIds}
+        selectedConstellationId={activeConstellationNode?.id || null}
         onSelectConstellationNode={handleSelectConstellationNode}
         allConstellationsDiscovered={allConstellationsDiscovered}
         unsaidPetals={content.unsaidPetals}
@@ -158,6 +162,7 @@ export default function ExperiencePage() {
                 themeQuote={content.eventDate.themeQuote}
                 nodes={content.constellationThoughts}
                 discoveredNodeIds={discoveredConstellationIds}
+                activeNode={activeConstellationNode}
                 onSelectNode={handleSelectConstellationNode}
                 allDiscovered={allConstellationsDiscovered}
                 onContinue={() => goToScene(3)}

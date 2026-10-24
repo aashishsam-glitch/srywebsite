@@ -20,6 +20,7 @@ interface SceneCanvasProps {
   reducedMotion: boolean;
   constellationNodes: ConstellationNode[];
   discoveredConstellationIds: number[];
+  selectedConstellationId: number | null;
   onSelectConstellationNode: (node: ConstellationNode) => void;
   allConstellationsDiscovered: boolean;
   unsaidPetals: PetalThought[];
@@ -34,6 +35,7 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
   reducedMotion,
   constellationNodes,
   discoveredConstellationIds,
+  selectedConstellationId,
   onSelectConstellationNode,
   allConstellationsDiscovered,
   unsaidPetals,
@@ -105,6 +107,7 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
           <Constellation3D
             nodes={constellationNodes}
             discoveredNodeIds={discoveredConstellationIds}
+            selectedNodeId={selectedConstellationId}
             onSelectNode={onSelectConstellationNode}
             allDiscovered={allConstellationsDiscovered}
             visible={sceneId === 2}
