@@ -17,7 +17,7 @@ function createPetalGeometry(): THREE.BufferGeometry {
   shape.bezierCurveTo(0.08, 0.8, -0.08, 0.8, -0.14, 0.65);
   shape.bezierCurveTo(-0.22, 0.35, -0.12, 0.15, 0, 0);
 
-  const geom = new THREE.ShapeGeometry(shape, 8);
+  const geom = new THREE.ShapeGeometry(shape, 24);
   // Add a delicate curve to the Z axis so the petal isn't flat
   const pos = geom.attributes.position;
   for (let i = 0; i < pos.count; i++) {

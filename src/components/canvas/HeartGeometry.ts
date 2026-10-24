@@ -2,30 +2,31 @@ import * as THREE from 'three';
 
 export function createHeartShape(): THREE.Shape {
   const shape = new THREE.Shape();
-  // Starting at the bottom cleft tip
-  shape.moveTo(0, -0.6);
-  // Left bottom curve upward
-  shape.bezierCurveTo(-0.6, -0.2, -1.1, 0.4, -0.7, 0.9);
-  // Left top cusp
-  shape.bezierCurveTo(-0.4, 1.2, 0, 0.9, 0, 0.45);
-  // Right top cusp
-  shape.bezierCurveTo(0, 0.9, 0.4, 1.2, 0.7, 0.9);
-  // Right bottom curve back down to cleft
-  shape.bezierCurveTo(1.1, 0.4, 0.6, -0.2, 0, -0.6);
+  // Bottom graceful cleft
+  shape.moveTo(0, -0.65);
+  // Left lower arc
+  shape.bezierCurveTo(-0.35, -0.35, -0.85, 0.05, -0.85, 0.52);
+  // Left upper lobe
+  shape.bezierCurveTo(-0.85, 0.92, -0.42, 1.08, 0, 0.65);
+  // Right upper lobe
+  shape.bezierCurveTo(0.42, 1.08, 0.85, 0.92, 0.85, 0.52);
+  // Right lower arc back to cleft
+  shape.bezierCurveTo(0.85, 0.05, 0.35, -0.35, 0, -0.65);
 
   return shape;
 }
 
-export function createHeartGeometry(depth = 0.35, scale = 1): THREE.BufferGeometry {
+export function createHeartGeometry(depth = 0.3, scale = 1): THREE.BufferGeometry {
   const shape = createHeartShape();
   const extrudeSettings: THREE.ExtrudeGeometryOptions = {
-    steps: 2,
+    curveSegments: 64, // Silky smooth perimeter
+    steps: 4,
     depth: depth,
     bevelEnabled: true,
-    bevelThickness: 0.12,
-    bevelSize: 0.1,
+    bevelThickness: 0.16,
+    bevelSize: 0.12,
     bevelOffset: 0,
-    bevelSegments: 8,
+    bevelSegments: 20, // Rounded pillowy bevel
   };
 
   const geom = new THREE.ExtrudeGeometry(shape, extrudeSettings);

@@ -26,19 +26,19 @@ function SinglePetalMesh({
 }) {
   const meshRef = useRef<THREE.Group>(null);
 
-  // Procedural 3D Petal Geometry
+  // High-poly smooth organic petal geometry
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
     shape.moveTo(0, 0);
-    shape.bezierCurveTo(0.2, 0.25, 0.35, 0.55, 0.2, 1.0);
-    shape.bezierCurveTo(0.1, 1.25, -0.1, 1.25, -0.2, 1.0);
-    shape.bezierCurveTo(-0.35, 0.55, -0.2, 0.25, 0, 0);
+    shape.bezierCurveTo(0.22, 0.28, 0.38, 0.6, 0.22, 1.05);
+    shape.bezierCurveTo(0.12, 1.3, -0.12, 1.3, -0.22, 1.05);
+    shape.bezierCurveTo(-0.38, 0.6, -0.22, 0.28, 0, 0);
 
-    const geom = new THREE.ShapeGeometry(shape, 12);
+    const geom = new THREE.ShapeGeometry(shape, 32); // High subdivision
     const pos = geom.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const y = pos.getY(i);
-      const z = Math.sin(y * Math.PI) * 0.12;
+      const z = Math.sin(y * Math.PI) * 0.14;
       pos.setZ(i, z);
     }
     geom.computeVertexNormals();
@@ -70,7 +70,7 @@ function SinglePetalMesh({
     <group ref={meshRef} onClick={onClick}>
       {/* Hit box for easy tapping */}
       <mesh>
-        <sphereGeometry args={[0.55, 12, 12]} />
+        <sphereGeometry args={[0.55, 16, 16]} />
         <meshBasicMaterial transparent opacity={0} />
       </mesh>
 
@@ -78,11 +78,12 @@ function SinglePetalMesh({
         <meshPhysicalMaterial
           color={petal.color}
           emissive={petal.color}
-          emissiveIntensity={isSelected ? 0.6 : 0.25}
-          roughness={0.2}
-          transmission={0.45}
-          thickness={0.6}
+          emissiveIntensity={isSelected ? 0.65 : 0.28}
+          roughness={0.15}
+          transmission={0.55}
+          thickness={0.8}
           clearcoat={0.9}
+          iridescence={0.35}
           side={THREE.DoubleSide}
         />
       </mesh>

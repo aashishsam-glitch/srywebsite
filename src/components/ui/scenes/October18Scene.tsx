@@ -76,20 +76,26 @@ export const October18Scene: React.FC<October18SceneProps> = ({
           {activeNode ? (
             <motion.div
               key={activeNode.id}
-              initial={{ opacity: 0, y: 15, scale: 0.97 }}
+              initial={{ opacity: 0, y: 15, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.97 }}
-              transition={{ duration: 0.4 }}
-              className="p-6 sm:p-7 rounded-2xl bg-midnight-800/80 border border-roseSoft/30 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-center relative overflow-hidden"
+              exit={{ opacity: 0, y: -10, scale: 0.96 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="relative p-7 sm:p-8 rounded-3xl bg-midnight-900/85 border border-white/20 backdrop-blur-2xl shadow-[0_16px_48px_rgba(0,0,0,0.65)] text-center overflow-hidden"
             >
-              <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-roseSoft/60 to-transparent" />
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-champagne" />
-                <span className="text-xs uppercase tracking-widest text-champagne/90 font-light">
+              {/* Soft ambient stellar glow */}
+              <div
+                className="absolute -top-20 inset-x-0 h-40 rounded-full blur-3xl opacity-30 pointer-events-none"
+                style={{ backgroundColor: activeNode.color }}
+              />
+              <div className="absolute top-0 inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+              
+              <div className="flex items-center justify-center gap-2 mb-3.5 relative z-10">
+                <Sparkles className="w-4 h-4 text-champagne" />
+                <span className="text-xs uppercase tracking-[0.25em] text-champagne/90 font-light">
                   {activeNode.label}
                 </span>
               </div>
-              <p className="text-lg sm:text-xl font-serif text-ivoryWarm font-light leading-relaxed">
+              <p className="text-xl sm:text-2xl font-serif text-ivoryWarm font-light leading-relaxed relative z-10">
                 &ldquo;{activeNode.statement}&rdquo;
               </p>
             </motion.div>
@@ -97,10 +103,10 @@ export const October18Scene: React.FC<October18SceneProps> = ({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="p-5 rounded-xl bg-midnight-900/40 border border-white/5 backdrop-blur-sm text-center"
+              transition={{ delay: 0.8 }}
+              className="p-6 rounded-2xl bg-midnight-900/40 border border-white/10 backdrop-blur-md text-center shadow-lg"
             >
-              <p className="text-sm text-ivoryWarm/60 font-serif italic">
+              <p className="text-sm sm:text-base text-ivoryWarm/70 font-serif italic">
                 Tap each glowing star below to unlock its reflection...
               </p>
             </motion.div>

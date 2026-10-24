@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Suspense, useState, useEffect } from 'react';
+import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { MagneticHeart } from './MagneticHeart';
 import { CosmicBackground } from './CosmicBackground';
@@ -66,6 +67,8 @@ export const SceneCanvas: React.FC<SceneCanvasProps> = ({
           antialias: true,
           alpha: true,
           powerPreference: 'high-performance',
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.1,
         }}
       >
         <Suspense fallback={null}>

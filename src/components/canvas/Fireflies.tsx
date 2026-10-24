@@ -3,6 +3,7 @@
 import React, { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
+import { getStarSpriteTexture } from './StarTextures';
 
 interface FirefliesProps {
   count?: number;
@@ -86,12 +87,14 @@ export const Fireflies: React.FC<FirefliesProps> = ({ count = 65, sceneId }) => 
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.16}
-        color="#F8E3C0"
+        size={0.28}
+        map={getStarSpriteTexture()}
+        color="#FCE6C2"
         transparent
-        opacity={0.85}
+        opacity={0.9}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
+        sizeAttenuation
       />
     </points>
   );

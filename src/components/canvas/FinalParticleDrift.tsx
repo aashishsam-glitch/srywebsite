@@ -4,6 +4,7 @@ import React, { useMemo, useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { soundEngine } from '@/lib/audioSynth';
+import { getStarSpriteTexture } from './StarTextures';
 
 interface FinalParticleDriftProps {
   isDrifting: boolean;
@@ -105,12 +106,14 @@ export const FinalParticleDrift: React.FC<FinalParticleDriftProps> = ({
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.18}
+        size={0.32}
+        map={getStarSpriteTexture()}
         vertexColors
         transparent
-        opacity={0.9}
+        opacity={0.92}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
+        sizeAttenuation
       />
     </points>
   );
