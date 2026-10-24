@@ -78,8 +78,10 @@ export const UnsaidThingsScene: React.FC<UnsaidThingsSceneProps> = ({
               className="relative p-6 sm:p-8 rounded-3xl bg-midnight-900/90 border border-white/20 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.6)] text-center overflow-hidden"
             >
               <button
+                type="button"
                 onClick={handleCloseCard}
-                className="absolute top-4 right-4 p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-ivoryWarm/60 hover:text-ivoryWarm transition-colors cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
+                className="absolute top-4 right-4 p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-ivoryWarm/60 hover:text-ivoryWarm transition-colors cursor-pointer pointer-events-auto"
                 aria-label="Close card"
               >
                 <X className="w-4 h-4" />
@@ -128,8 +130,10 @@ export const UnsaidThingsScene: React.FC<UnsaidThingsSceneProps> = ({
             return (
               <button
                 key={petal.id}
+                type="button"
+                style={{ touchAction: 'manipulation' }}
                 onClick={() => handlePetalClick(petal)}
-                className={`px-3.5 py-2 rounded-full border backdrop-blur-md transition-all duration-300 text-xs sm:text-sm font-serif flex items-center gap-2 cursor-pointer ${
+                className={`px-3.5 py-2 rounded-full border backdrop-blur-md transition-all duration-300 text-xs sm:text-sm font-serif flex items-center gap-2 cursor-pointer pointer-events-auto ${
                   isSelected
                     ? 'bg-white/15 border-white text-ivoryWarm shadow-[0_0_15px_rgba(255,255,255,0.2)]'
                     : isDiscovered
@@ -154,11 +158,13 @@ export const UnsaidThingsScene: React.FC<UnsaidThingsSceneProps> = ({
           transition={{ delay: 0.8 }}
         >
           <button
+            type="button"
             onClick={() => {
               soundEngine.playChime(659.25);
               onContinue();
             }}
-            className="px-7 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 hover:border-roseSoft/60 backdrop-blur-xl text-ivoryWarm font-serif tracking-wider text-sm sm:text-base flex items-center gap-2.5 transition-all duration-300 shadow-lg cursor-pointer"
+            style={{ touchAction: 'manipulation' }}
+            className="px-7 py-3 rounded-full bg-white/[0.08] hover:bg-white/[0.14] active:scale-95 border border-white/20 hover:border-roseSoft/60 backdrop-blur-xl text-ivoryWarm font-serif tracking-wider text-sm sm:text-base flex items-center gap-2.5 transition-all duration-300 shadow-lg cursor-pointer pointer-events-auto"
           >
             <span>A final thought for you</span>
             <ArrowRight className="w-4 h-4 text-roseSoft" />

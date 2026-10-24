@@ -16,8 +16,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, name })
           key="loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#090D23] text-ivoryWarm px-6 select-none"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#090D23] text-ivoryWarm px-6 select-none pointer-events-none"
         >
           {/* Gentle Pulsing Heart Logo */}
           <div className="relative flex items-center justify-center mb-8">

@@ -119,8 +119,10 @@ export const October18Scene: React.FC<October18SceneProps> = ({
             return (
               <button
                 key={node.id}
+                type="button"
+                style={{ touchAction: 'manipulation' }}
                 onClick={() => handleNodeClick(node)}
-                className={`relative px-3 py-2.5 rounded-xl border backdrop-blur-md transition-all duration-300 text-xs font-serif flex items-center justify-between gap-1.5 cursor-pointer ${
+                className={`relative px-3 py-2.5 rounded-xl border backdrop-blur-md transition-all duration-300 text-xs font-serif flex items-center justify-between gap-1.5 cursor-pointer pointer-events-auto ${
                   isCurrent
                     ? 'bg-roseSoft/20 border-roseSoft text-ivoryWarm shadow-[0_0_15px_rgba(243,165,199,0.3)]'
                     : isDiscovered
@@ -166,8 +168,10 @@ export const October18Scene: React.FC<October18SceneProps> = ({
               transition={{ duration: 0.6 }}
             >
               <button
+                type="button"
                 onClick={handleNext}
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-roseSoft/20 via-lavender/25 to-roseSoft/20 hover:from-roseSoft/30 hover:to-lavender/35 border border-roseSoft/50 backdrop-blur-xl shadow-[0_0_25px_rgba(243,165,199,0.35)] text-ivoryWarm font-serif tracking-wider text-base sm:text-lg flex items-center gap-2.5 transition-all duration-300 cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
+                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-roseSoft/20 via-lavender/25 to-roseSoft/20 hover:from-roseSoft/30 hover:to-lavender/35 active:scale-95 border border-roseSoft/50 backdrop-blur-xl shadow-[0_0_25px_rgba(243,165,199,0.35)] text-ivoryWarm font-serif tracking-wider text-base sm:text-lg flex items-center gap-2.5 transition-all duration-300 cursor-pointer pointer-events-auto"
               >
                 <span>Read what I wrote for you</span>
                 <ArrowRight className="w-4 h-4 text-roseSoft" />

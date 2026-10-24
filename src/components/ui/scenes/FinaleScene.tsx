@@ -67,9 +67,11 @@ export const FinaleScene: React.FC<FinaleSceneProps> = ({
 
               {/* Action Button: "Let the little stars drift" */}
               <button
+                type="button"
                 onClick={handleDriftClick}
                 disabled={isDrifting}
-                className="group px-8 py-3.5 rounded-full bg-gradient-to-r from-roseSoft/20 via-lavender/25 to-champagne/20 hover:from-roseSoft/35 hover:to-champagne/35 border border-white/20 hover:border-roseSoft/60 backdrop-blur-xl shadow-[0_0_30px_rgba(243,165,199,0.3)] text-ivoryWarm font-serif tracking-wider text-base sm:text-lg transition-all duration-500 flex items-center gap-3 cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
+                className="group px-8 py-3.5 rounded-full bg-gradient-to-r from-roseSoft/20 via-lavender/25 to-champagne/20 hover:from-roseSoft/35 hover:to-champagne/35 active:scale-95 border border-white/20 hover:border-roseSoft/60 backdrop-blur-xl shadow-[0_0_30px_rgba(243,165,199,0.3)] text-ivoryWarm font-serif tracking-wider text-base sm:text-lg transition-all duration-500 flex items-center gap-3 cursor-pointer pointer-events-auto"
               >
                 <Sparkles className="w-4 h-4 text-champagne group-hover:rotate-12 transition-transform" />
                 <span>{actionButtonText}</span>
@@ -110,8 +112,10 @@ export const FinaleScene: React.FC<FinaleSceneProps> = ({
                 className="mt-12"
               >
                 <button
+                  type="button"
                   onClick={onReplay}
-                  className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 text-xs sm:text-sm text-ivoryWarm/60 hover:text-ivoryWarm transition-all duration-300 flex items-center gap-2 cursor-pointer font-serif"
+                  style={{ touchAction: 'manipulation' }}
+                  className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 active:scale-95 border border-white/10 hover:border-white/25 text-xs sm:text-sm text-ivoryWarm/60 hover:text-ivoryWarm transition-all duration-300 flex items-center gap-2 cursor-pointer font-serif pointer-events-auto"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>Experience from the beginning</span>

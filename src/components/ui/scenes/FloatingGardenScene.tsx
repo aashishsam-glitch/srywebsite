@@ -45,8 +45,10 @@ export const FloatingGardenScene: React.FC<FloatingGardenSceneProps> = ({ onCont
           className="mt-8"
         >
           <button
+            type="button"
             onClick={handleClick}
-            className="group px-7 py-3 rounded-full bg-midnight-800/60 hover:bg-white/[0.12] border border-white/15 hover:border-lavender/50 backdrop-blur-md shadow-lg hover:shadow-[0_0_24px_rgba(183,165,247,0.35)] text-ivoryWarm/90 hover:text-ivoryWarm tracking-wider font-serif text-base sm:text-lg transition-all duration-300 flex items-center gap-2 cursor-pointer"
+            style={{ touchAction: 'manipulation' }}
+            className="group px-7 py-3 rounded-full bg-midnight-800/60 hover:bg-white/[0.12] active:scale-95 border border-white/15 hover:border-lavender/50 backdrop-blur-md shadow-lg hover:shadow-[0_0_24px_rgba(183,165,247,0.35)] text-ivoryWarm/90 hover:text-ivoryWarm tracking-wider font-serif text-base sm:text-lg transition-all duration-300 flex items-center gap-2 cursor-pointer pointer-events-auto"
           >
             <span>There&apos;s something I owe you</span>
             <span className="text-lavender transition-transform duration-300 group-hover:translate-x-1">

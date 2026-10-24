@@ -81,28 +81,34 @@ export const ApologyLetterScene: React.FC<ApologyLetterSceneProps> = ({
             {/* Reading Controls */}
             <div className="flex items-center gap-2">
               <button
+                type="button"
                 onClick={handleToggleAutoPlay}
                 disabled={isComplete}
+                style={{ touchAction: 'manipulation' }}
                 title={isAutoPlaying ? 'Pause reveal' : 'Resume auto-reveal'}
-                className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-ivoryWarm/70 hover:text-ivoryWarm transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-ivoryWarm/70 hover:text-ivoryWarm transition-colors disabled:opacity-30 disabled:cursor-not-allowed pointer-events-auto cursor-pointer"
               >
                 {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               </button>
 
               <button
+                type="button"
                 onClick={handleNextParagraph}
                 disabled={isComplete}
+                style={{ touchAction: 'manipulation' }}
                 title="Next paragraph"
-                className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-ivoryWarm/70 hover:text-ivoryWarm transition-colors disabled:opacity-30 disabled:cursor-not-allowed font-serif"
+                className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-ivoryWarm/70 hover:text-ivoryWarm transition-colors disabled:opacity-30 disabled:cursor-not-allowed font-serif pointer-events-auto cursor-pointer"
               >
                 Next
               </button>
 
               <button
+                type="button"
                 onClick={handleShowAll}
                 disabled={isComplete}
+                style={{ touchAction: 'manipulation' }}
                 title="Read full letter instantly"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-roseSoft hover:text-roseSoft-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed font-serif"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-roseSoft hover:text-roseSoft-light transition-colors disabled:opacity-30 disabled:cursor-not-allowed font-serif pointer-events-auto cursor-pointer"
               >
                 <FastForward className="w-3 h-3" />
                 <span>Show all</span>
@@ -157,8 +163,10 @@ export const ApologyLetterScene: React.FC<ApologyLetterSceneProps> = ({
 
                 {/* Continue button */}
                 <button
+                  type="button"
                   onClick={onContinue}
-                  className="px-6 py-2.5 rounded-full bg-roseSoft/20 hover:bg-roseSoft/30 border border-roseSoft/50 text-ivoryWarm font-serif tracking-wider text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-md cursor-pointer"
+                  style={{ touchAction: 'manipulation' }}
+                  className="px-6 py-2.5 rounded-full bg-roseSoft/20 hover:bg-roseSoft/30 active:scale-95 border border-roseSoft/50 text-ivoryWarm font-serif tracking-wider text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-md cursor-pointer pointer-events-auto"
                 >
                   <span>A garden of unsaid things</span>
                   <ArrowRight className="w-4 h-4 text-roseSoft" />

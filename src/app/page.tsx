@@ -62,10 +62,7 @@ export default function ExperiencePage() {
       } catch (err) {
         console.warn('Using default content:', err);
       } finally {
-        // Subtle loading timeout for smooth atmosphere entrance
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1200);
+        setIsLoading(false);
       }
     };
 
@@ -123,7 +120,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <OpeningScene
@@ -140,7 +137,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <FloatingGardenScene onContinue={() => goToScene(2)} />
@@ -153,7 +150,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <October18Scene
@@ -174,7 +171,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <ApologyLetterScene
@@ -193,7 +190,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <UnsaidThingsScene
@@ -211,7 +208,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <FinaleScene
